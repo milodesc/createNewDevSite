@@ -7,6 +7,7 @@ if [ "$#" -ne 1 ]; then
 fi
 
 url=$1
+newDocRoot="/var/www/$url"
 
 #Append the URL/ip address pair to the /etc/hosts file
 sudo echo "127.0.0.1	$url" >> /etc/hosts
@@ -18,16 +19,20 @@ if [ "$httpStatus" -ne 200 ]; then
   exit 1
 fi
 
-#Copy the config file and edit the copy
-#sudo cp /etc/apache2/sites-available/default /etc/apache2/sites-available/$url
+#Copy the default config file and customize the copy
+sudo cp /etc/apache2/sites-available/default /etc/apache2/sites-available/$url
 #ServerName $url
-#DocumentRoot /var/www/$url
-#<Directory /var/www/$url>
+#DocumentRoot $newDocRoot
+#<Directory $newDocRoot>
 
 #Create and populate the document root
-#sudo mkdir -p /var/www/$url
-#sudo echo "Congrats! You have a new dev site." > /var/www/$url/index.html
+#sudo mkdir -p $newDocRoot
+#sudo echo "Congrats! You have a new dev site." > $newDocRoot/index.html
 
 #Activate the site
 #sudo a2ensite $url
 #service apache2 reload
+
+#Install drupal?
+
+#Open site
