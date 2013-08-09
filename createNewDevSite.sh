@@ -24,19 +24,14 @@ sudo cp /etc/apache2/sites-available/default /etc/apache2/sites-available/$url
 sudo sed -i "/ServerAdmin webmaster@localhost/a\\\tServerName $url" /etc/apache2/sites-available/$url
 sudo sed -i -e "s@/var/www/default@${newDocRoot}@g" /etc/apache2/sites-available/$url
 
-
-#<Directory $newDocRoot>
-
-#sudo sed -i '/# http:\/\/who-t.blogspot.com\/2010\/11\/how-to-ignore-configuration-errors.html/a#The next 2 lines were added by the postChrubuntuInstallation script:\nOption "FingerLow" "4"\nOption "FingerHigh" "10"' /usr/share/X11/xorg.conf.d/50-synaptics.conf
-
 #Create and populate the document root
-#sudo mkdir -p $newDocRoot
-#sudo echo "Congrats! You have a new dev site." > $newDocRoot/index.html
+sudo mkdir -p $newDocRoot
+sudo echo "Congrats! You have a new dev site." > $newDocRoot/index.html
 
 #Activate the site
-#sudo a2ensite $url
-#service apache2 reload
-
-#Install drupal?
+sudo a2ensite $url
+sudo service apache2 reload
 
 #Open site
+firefox -new-window "http://$url"
+#xdg-open "http://$url"
